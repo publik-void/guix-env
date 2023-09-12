@@ -36,6 +36,8 @@
           (url "https://github.com/publik-void/config-tmux.git")))
         ("nvim" ,(git-checkout
           (url "https://github.com/publik-void/config-nvim.git")))
+        ("xmonad" ,(git-checkout
+          (url "https://github.com/publik-void/config-xmonad.git")))
         ("cross-platform-copy-paste" ,(git-checkout
           (url "https://github.com/publik-void/cross-platform-copy-paste.git")))))
       )))
