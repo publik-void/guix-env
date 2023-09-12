@@ -21,7 +21,7 @@
   (map specification->package
     (list
       "ripgrep" "fd"
-      ;; "efm-langserver not available
+      ;; TODO: "efm-langserver"/"go-efm-langserver" not available
       "python" "python-watchdog" "python-pynvim" "python-flake8"
       "shellcheck")))
 
@@ -44,6 +44,7 @@
 (define writing-env
   (map specification->package
     (list "tectonic" "pandoc"))) ; "asciidoctor" not available
+    ;; TODO: "ruby-asciidoctor" is available, but needs extra config
 
 (define python-env
   (map specification->package
