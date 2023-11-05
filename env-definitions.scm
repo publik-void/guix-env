@@ -1,5 +1,7 @@
-(use-modules (gnu)
-             (guix profiles))
+(use-modules
+  (gnu)
+  (guix profiles)
+  (guix transformations))
 
 (define guix-base-env
   %base-packages)
@@ -35,7 +37,7 @@
 
 (define compression-env
   (map specification->package
-    (list "tar" "gzip" "zip" "unzip" "unrar-free" "p7zip" "bzip2" "xz" "lz4")))
+    (list "tar" "gzip" "zip" "unzip" "p7zip" "bzip2" "xz" "lz4")))
 
 (define cxx-env
   (map specification->package
@@ -59,4 +61,10 @@
     (list
       "xmonad" "xmessage" "ghc" "ghc-xmonad-contrib" "gcc-toolchain"
       "ungoogled-chromium"
-      "openssh")))
+      "openssh"
+      "st")))
+
+(define transform
+  (options->transformation
+    ;;'((with-patch . "st=https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff"))))
+    '()))

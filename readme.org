@@ -6,7 +6,7 @@ This is quite preliminary thus far. To smooth off some of the currently rough
 edges, either I or people working on ~guix home~ need to do some more work.
 Current issues include:
 - Fish shell does not allow setting the environment variable ~_~.
-- ~guix home reconfigure~ needs ~--allow-downgrades~.
+- ~guix home reconfigure~ needs ~--allow-downgrades~ (not sure about this one).
 - Dotfile repositories get pulled anew on every new container started.
 - The `home-fish-service-type` clashes with a custom dotfile repository, though
   I was able to work around this though the code in ~link-config.fish~.
