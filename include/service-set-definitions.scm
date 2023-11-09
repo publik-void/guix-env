@@ -1,4 +1,5 @@
 (use-modules
+  (gnu)
   (gnu home services)
   (gnu home services shells)
   (gnu home services fontutils)
@@ -23,7 +24,7 @@
   (list
     (simple-service 'config-dotfiles-desktop
       home-xdg-configuration-files-service-type `(
-      ("sx" ,(local-file "files/sx" #:recursive? #t))))
+      ("sx" ,(local-file "../files/sx" #:recursive? #t))))
     (simple-service 'dotfiles-desktop home-files-service-type `(
       ;; NOTE: There is also the system-wide `console-font-service-type`, but
       ;; I'm choosing to keep this user-specific.
@@ -40,7 +41,7 @@ XKBLAYOUT=" keyboard-layout)))
 #include \".Xresources.d/temperance/" color-scheme ".theme.Xresources\"
 ")))
       (".Xresources.d/hack.font.Xresources"
-        ,(local-file "files/Xresources.d/hack.font.Xresources"))
+        ,(local-file "../files/Xresources.d/hack.font.Xresources"))
       (".Xresources.d/temperance" ,(file-append
         temperance-color-scheme-checkout
         "/temperance/Xresources/temperance"))))
@@ -64,7 +65,7 @@ XKBLAYOUT=" keyboard-layout)))
 (define service-set-git
   (list
     (simple-service 'gitconfig-dotfile home-files-service-type `(
-      (".gitconfig" ,(local-file "files/.gitconfig" "gitconfig"))))))
+      (".gitconfig" ,(local-file "../files/.gitconfig" "gitconfig"))))))
 
 (define service-set-fish
   (list
@@ -73,7 +74,7 @@ XKBLAYOUT=" keyboard-layout)))
     ;; used `service`) (TODO)
     (simple-service 'fish-link-config home-fish-service-type
       (home-fish-extension (config (list
-        (local-file "files/link-config.fish")
+        (local-file "../files/link-config.fish")
         (plain-file "setup-console.fish" "\
 if begin status is-interactive
     and [ $TERM = linux ]

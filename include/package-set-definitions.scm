@@ -2,7 +2,7 @@
   (gnu)
   (guix profiles))
 
-(include "../packages/st-patched.scm")
+(include "../packages/st-patched/st-patched.scm")
   ;; NOTE: Including `%base-packages` in the home profile replaces the programs
   ;; under `/run/setuid-programs`, which e.g. makes `sudo` unuseable.
   ;; NOTE: Guix is not included in the `%base-packages`, but can be made
