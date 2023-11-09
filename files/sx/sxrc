@@ -1,0 +1,4 @@
+# vim: filetype=sh
+
+xrdb -merge $HOME/.Xresources
+exec dbus-run-session -- xmonad > $HOME/.xsession-errors 2>&1

@@ -1,0 +1,12 @@
+! vim: filetype=xdefaults
+
+! I like text without hinting
+#define FONT Hack:size=24:antialias=true:hinting=false
+
+xterm*faceName: FONT
+
+! TODO: This does not seem to work for urxvt at the moment
+!URxvt*font: Liberation FONT
+!URxvt*boldFont: FONT
+
+st.font: FONT

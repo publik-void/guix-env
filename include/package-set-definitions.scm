@@ -1,25 +1,29 @@
 (use-modules
   (gnu)
-  (guix profiles)
-  (guix transformations))
+  (guix profiles))
 
-(define guix-base-env
+(include "../packages/st-patched.scm")
+  ;; NOTE: Including `%base-packages` in the home profile replaces the programs
+  ;; under `/run/setuid-programs`, which e.g. makes `sudo` unuseable.
+  ;; NOTE: Guix is not included in the `%base-packages`, but can be made
+  ;; available in a container with --nested
+(define guix-base-package-set
   %base-packages)
 
-(define base-env
+(define base-package-set
   (map specification->package
     (list "fish" "fish-foreign-env" "tmux" "neovim" "git" "openssh-sans-x"
       "mosh" "ncurses")))
 
-(define fish-optional-dependencies-env
+(define fish-optional-dependencies-package-set
   (map specification->package
     (list "parallel" "tar" "botan" "libressl" "xz" "lz4")))
 
-(define tmux-optional-dependencies-env
+(define tmux-optional-dependencies-package-set
   (map specification->package
     (list)))
 
-(define neovim-optional-dependencies-env
+(define neovim-optional-dependencies-package-set
   (map specification->package
     (list
       "ripgrep" "fd"
@@ -27,44 +31,41 @@
       "python" "python-watchdog" "python-pynvim" "python-flake8"
       "shellcheck")))
 
-(define guix-env
-  (map specification->package
-    (list "guix" "guile")))
-
-(define encryption-env
+(define encryption-package-set
   (map specification->package
     (list "libressl" "gnupg" "botan")))
 
-(define compression-env
+(define compression-package-set
   (map specification->package
     (list "tar" "gzip" "zip" "unzip" "p7zip" "bzip2" "xz" "lz4")))
 
-(define cxx-env
+(define cxx-package-set
   (map specification->package
     (list "gcc-toolchain" "clang-toolchain" "make" "ninja" "cmake" "boost")))
 
-(define writing-env
+(define writing-package-set
   (map specification->package
     (list "tectonic" "pandoc"))) ; "asciidoctor" not available
     ;; TODO: "ruby-asciidoctor" is available, but needs extra config
 
-(define python-env
+(define python-package-set
   (map specification->package
     (list "python" "python-numpy" "python-scipy"))) ; "poetry" currently fails
 
-(define julia-env
+(define julia-package-set
   (map specification->package
     (list "julia")))
 
-(define desktop-env
-  (map specification->package
-    (list
-      "xmonad" "xmessage" "ghc" "ghc-xmonad-contrib" "gcc-toolchain"
-      "ungoogled-chromium"
-      "openssh"
-      "st")))
+(define desktop-package-set
+  (append
+    (map specification->package
+      (list
+        "sx"
+        "xrdb"
+        "font-hack"
+        "xmonad" "xmessage" "ghc" "ghc-xmonad-contrib" "gcc-toolchain"
+        ;;"dmenu"
+        "ungoogled-chromium"
+        "openssh"))
+    (list st-patched)))
 
-(define transform
-  (options->transformation
-    ;;'((with-patch . "st=https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff"))))
-    '()))
