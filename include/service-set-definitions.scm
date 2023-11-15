@@ -2,6 +2,7 @@
   (gnu)
   (gnu home services)
   (gnu home services shells)
+  (gnu home services ssh)
   (gnu home services fontutils)
   (gnu packages xorg)
   (guix git))
@@ -61,6 +62,14 @@ XKBLAYOUT=" keyboard-layout)))
           (family "monospace")
           (prefer
            (family "Hack")))))))
+
+(define service-set-ssh
+  (list
+    (service home-openssh-service-type
+      (home-openssh-configuration
+        (authorized-keys (list
+          (local-file "../files/lasse-mbp-0.pub")
+          (local-file "../files/lasse-mba-0.pub")))))))
 
 (define service-set-git
   (list

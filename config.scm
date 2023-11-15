@@ -23,6 +23,7 @@
     (append
       service-set-common-resources
       service-set-common-resources-desktop
+      service-set-ssh
       service-set-git
       service-set-fish
       service-set-tmux
