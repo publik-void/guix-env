@@ -72,9 +72,16 @@
   (list
     (service home-openssh-service-type
       (home-openssh-configuration
-        (authorized-keys (list
-          (local-file "../files/lasse-mbp-0.pub")
-          (local-file "../files/lasse-mba-0.pub")))))))
+        (authorized-keys
+          #f
+          ;; TODO: Disabled this for now as some `sshd`s apparently require the
+          ;; `authorized_keys` file to be owned by the user account under which
+          ;; the login is requested, and do not allow for it to be owned by
+          ;; `root`, which is the case if it resides in the `/gnu/store`.
+          ;;(list
+          ;;  (local-file "../files/lasse-mbp-0.pub")
+          ;;  (local-file "../files/lasse-mba-0.pub"))
+        )))))
 
 (define service-set-git
   (list
