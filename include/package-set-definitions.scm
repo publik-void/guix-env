@@ -1,5 +1,6 @@
 (use-modules
   (gnu)
+  (gnu packages xorg)
   (guix profiles))
 
 (include "../packages/st-patched/st-patched.scm")
@@ -10,10 +11,13 @@
 (define guix-base-package-set
   %base-packages)
 
-(define base-package-set
+(define ssh-package-set
   (map specification->package
-    (list "fish" "fish-foreign-env" "tmux" "neovim" "git" "openssh-sans-x"
-      "mosh" "ncurses")))
+    (list "openssh-sans-x" "mosh")))
+
+(define base-package-set
+  (cons* console-setup (map specification->package
+    (list "fish" "fish-foreign-env" "tmux" "neovim" "git" "ncurses"))))
 
 (define fish-optional-dependencies-package-set
   (map specification->package

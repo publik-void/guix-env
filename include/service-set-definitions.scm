@@ -19,7 +19,19 @@
     (simple-service 'config-dotfiles
       home-xdg-configuration-files-service-type `(
       ("cross-platform-copy-paste" ,(git-checkout (url
-        "https://github.com/publik-void/cross-platform-copy-paste.git")))))))
+        "https://github.com/publik-void/cross-platform-copy-paste.git")))))
+    (simple-service 'dotfiles-desktop home-files-service-type `(
+      ;; NOTE: There is also the system-wide `console-font-service-type`, but
+      ;; I'm choosing to keep this user-specific. This should also allow me to
+      ;; use the console setup on other operating systems.
+      (".console-setup.setupcon" ,(plain-file "console-setup.setupcon"
+        (string-append
+          "FONTFACE='TerminusBold'\n"
+          "FONTSIZE='16x32'\n"
+          "VIDEOMODE=''\n")))
+      (".keyboard.setupcon" ,(plain-file "keyboard" (string-append
+        "XKBMODEL=pc105\n"
+        "XKBLAYOUT=" keyboard-layout "\n")))))))
 
 (define service-set-common-resources-desktop
   (list
@@ -27,20 +39,10 @@
       home-xdg-configuration-files-service-type `(
       ("sx" ,(local-file "../files/sx" #:recursive? #t))))
     (simple-service 'dotfiles-desktop home-files-service-type `(
-      ;; NOTE: There is also the system-wide `console-font-service-type`, but
-      ;; I'm choosing to keep this user-specific.
-      (".console-setup.setupcon" ,(plain-file "console-setup.setupcon" "\
-FONTFACE='TerminusBold'
-FONTSIZE='16x32'
-VIDEOMODE=''
-"))
-      (".keyboard.setupcon" ,(plain-file "keyboard" (string-append "\
-XKBMODEL=pc105
-XKBLAYOUT=" keyboard-layout)))
-      (".Xresources" ,(plain-file "Xresources" (string-append "\
-#include \".Xresources.d/hack.font.Xresources\"
-#include \".Xresources.d/temperance/" color-scheme ".theme.Xresources\"
-")))
+      (".Xresources" ,(plain-file "Xresources" (string-append
+        "#include \".Xresources.d/hack.font.Xresources\"\n"
+        "#include \".Xresources.d/temperance/" color-scheme
+          ".theme.Xresources\"\n")))
       (".Xresources.d/hack.font.Xresources"
         ,(local-file "../files/Xresources.d/hack.font.Xresources"))
       (".Xresources.d/temperance" ,(file-append
