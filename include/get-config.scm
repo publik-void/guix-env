@@ -9,7 +9,7 @@
     (packages
       (filter
         (lambda (package) (let
-            ((supported? (supported-package? (%current-system))))
+            ((supported? (supported-package? package (%current-system))))
           (begin
             (when (not supported?) (begin
               (display (string-append "Skipping package " (package-name package)
