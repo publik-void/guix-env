@@ -18,6 +18,8 @@
   (list
     (simple-service 'environment-variables
       home-environment-variables-service-type
+      ;; TODO: On e.g. Raspberry Pi OS Bookworm, I still get a warning that
+      ;; Guile was not able to set the locale.
       `(("GUIX_LOCPATH" . "$HOME/.guix-home/profile/lib/locale")
         ("SSL_CERT_DIR" . "$HOME/.guix-home/profile/etc/ssl/certs")
         ("SSL_CERT_FILE" .
