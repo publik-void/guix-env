@@ -18,7 +18,11 @@
   (list
     (simple-service 'environment-variables
       home-environment-variables-service-type
-      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")))
+      `(("GUIX_LOCPATH" . "$HOME/.guix-home/profile/lib/locale")
+        ("SSL_CERT_DIR" . "$HOME/.guix-profile/etc/ssl/certs")
+        ("SSL_CERT_FILE" .
+          "$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt")
+        ("GIT_SSL_CAINFO" . "$SSL_CERT_FILE")))
     (simple-service 'config-dotfiles
       home-xdg-configuration-files-service-type `(
       ("cross-platform-copy-paste" ,(git-checkout (url

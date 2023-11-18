@@ -24,7 +24,8 @@
 
 (define base-package-set
   (cons* console-setup my-glibc-utf8-locales (map specification->package
-    (list "fish" "fish-foreign-env" "tmux" "neovim" "git" "ncurses"))))
+    (list
+      "fish" "fish-foreign-env" "tmux" "neovim" "git" "ncurses" "nss-certs"))))
 
 (define fish-optional-dependencies-package-set
   (map specification->package
