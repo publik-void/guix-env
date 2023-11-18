@@ -16,6 +16,9 @@
 
 (define service-set-common-resources
   (list
+    (simple-service 'environment-variables
+      home-environment-variables-service-type
+      `(("GUIX_LOCPATH" . "$HOME/.guix-profile/lib/locale")))
     (simple-service 'config-dotfiles
       home-xdg-configuration-files-service-type `(
       ("cross-platform-copy-paste" ,(git-checkout (url

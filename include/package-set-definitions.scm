@@ -1,9 +1,16 @@
 (use-modules
   (gnu)
+  (gnu packages base)
   (gnu packages xorg)
   (guix profiles))
 
+(define my-glibc-utf8-locales
+  (make-glibc-utf8-locales glibc
+    #:locales (list "en_US")
+    #:name "my-glibc-utf8-locales"))
+
 (include "../packages/st-patched/st-patched.scm")
+
   ;; NOTE: Including `%base-packages` in the home profile replaces the programs
   ;; under `/run/setuid-programs`, which e.g. makes `sudo` unuseable.
   ;; NOTE: Guix is not included in the `%base-packages`, but can be made
@@ -16,7 +23,7 @@
     (list "openssh-sans-x" "mosh")))
 
 (define base-package-set
-  (cons* console-setup (map specification->package
+  (cons* console-setup my-glibc-utf8-locales (map specification->package
     (list "fish" "fish-foreign-env" "tmux" "neovim" "git" "ncurses"))))
 
 (define fish-optional-dependencies-package-set
