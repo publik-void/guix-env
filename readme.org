@@ -16,3 +16,6 @@ To smooth off some of the currently rough edges, either I or people working on
   - It may be safer to start the container with ~sh~/~bash~ as login shell
     instead of ~fish~, as there are some additional errors and warnings in the
     latter case.
+
+Some troubleshooting tips can be found in the
+[[https://guix.gnu.org/manual/en/html_node/Application-Setup.html#Locales-1][manual]].
