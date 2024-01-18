@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# TODO: Is this necessary?
-. $HOME/.profile
+# NOTE: It seems that this is not necessary, but it may depend on the callee.
+#. $HOME/.profile
 
 # NOTE: Depending on what program executes this file, `$HOME/.xsession-errors`
 # might not be created.
