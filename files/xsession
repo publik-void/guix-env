@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# TODO: Is this necessary?
+source $HOME/.profile
+
+# NOTE: Depending on what program executes this file, `$HOME/.xsession-errors`
+# might not be created.
+exec xmonad

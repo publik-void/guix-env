@@ -46,6 +46,8 @@
   (list
     (simple-service 'config-dotfiles-desktop
       home-xdg-configuration-files-service-type `(
+      (".xsession"
+        ,(local-file "../files/xsession"))
       ("sx" ,(local-file "../files/sx" #:recursive? #t))))
     (simple-service 'dotfiles-desktop home-files-service-type `(
       (".Xresources" ,(plain-file "Xresources" (string-append
