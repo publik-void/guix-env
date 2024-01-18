@@ -46,10 +46,10 @@
   (list
     (simple-service 'config-dotfiles-desktop
       home-xdg-configuration-files-service-type `(
-      (".xsession"
-        ,(local-file "../files/xsession"))
       ("sx" ,(local-file "../files/sx" #:recursive? #t))))
     (simple-service 'dotfiles-desktop home-files-service-type `(
+      (".xsession"
+        ,(local-file "../files/xsession" #:recursive? #t))
       (".Xresources" ,(plain-file "Xresources" (string-append
         "#include \".Xresources.d/hack.font.Xresources\"\n"
         "#include \".Xresources.d/temperance/" color-scheme
